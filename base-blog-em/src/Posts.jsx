@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useQuery } from 'react-query';
+import { useState, useEffect } from "react";
+import { useQuery, useQueryClient } from 'react-query';
 
 import { PostDetail } from "./PostDetail";
+
 const maxPostPage = 10;
 
 async function fetchPosts(pageNum) {
@@ -15,13 +16,27 @@ export function Posts() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedPost, setSelectedPost] = useState(null);
 
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    const preFetch = async () => {
+      const nextPage = currentPage + 1;
+      await queryClient.prefetchQuery(['posts', nextPage], () => fetchPosts(nextPage));
+    }
+
+    if (currentPage < maxPostPage) {
+      preFetch();
+    }
+  }, [currentPage, queryClient]);
+
   const { isLoading, isFetching, isError, data, error,  } = useQuery(['posts', currentPage], () => fetchPosts(currentPage), {
-    staleTime: 0,
-    cacheTime: 1000 * 60,
+    staleTime: 2000, // will become STALE after 2 seconds!
+    // keepPreviousData: true,
+    cacheTime: 3000, // after 3 seconds, the cached data is gone/expired!
   });
     
   if (isLoading) return <h3>Loading...</h3>;
-  if (isFetching) return <h3>Fetching...</h3>;
+  // if (isFetching) return <h3>Fetching...</h3>;
   if (isError) return (
     <>
       <h3>oops, something went wrong!</h3>
@@ -30,8 +45,6 @@ export function Posts() {
   );
  
   if (!data) return <div />;
-
-  debugger;
 
   return (
     <>
