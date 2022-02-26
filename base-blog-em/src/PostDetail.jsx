@@ -18,7 +18,7 @@ async function deletePost(postId) {
 
 async function updatePost(postId) {
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/postId/${postId}`,
+    `https://jsonplaceholder.typicode.com/posts/${postId}`,
     { method: "PATCH", data: { title: "REACT QUERY FOREVER!!!!" } }
   );
   return response.json();
@@ -29,6 +29,10 @@ export function PostDetail({ post }) {
 
   const deleteMutation = useMutation((postId) => {  // the postId argument will be populated here when the 'mutate(xxx)' function is called somewhere with the actual parameter value
     return deletePost(postId);
+  });
+
+  const updateMutation = useMutation((postId) => {
+    return updatePost(postId);
   });
 
   if (isLoading) {
@@ -42,7 +46,8 @@ export function PostDetail({ post }) {
   return (
     <>
       <h3 style={{ color: "blue" }}>{post.title}</h3>
-      <button onClick={() => deleteMutation.mutate(post.id)}>Delete</button> <button>Update title</button>
+      <button onClick={() => deleteMutation.mutate(post.id)}>Delete</button> <button onClick={() => updateMutation.mutate(post.id)}>Update title</button>
+      {/***** Delete Mutation Messages *****/}
       {deleteMutation.isError && (
         <p style={{ color: 'red' }}>Error deleting the post</p>
       )}
@@ -51,6 +56,19 @@ export function PostDetail({ post }) {
       )}
       {deleteMutation.isSuccess && (
         <p style={{ color: 'green' }}>Post deleted!</p>
+      )}
+      {/***** Update Mutation Messages *****/}
+      {updateMutation.isError && (
+        <p style={{ color: 'red' }}>Error updating the post</p>
+      )}
+      {updateMutation.isLoading && (
+        <p style={{ color: 'purple' }}>Updating the post...</p>
+      )}
+      {updateMutation.isSuccess && updateMutation.data && (
+        <>
+          <p style={{ color: 'green' }}>Post updated!</p>
+          <div>{console.log(updateMutation.data)}</div> {/* if this is real database, then the 'data' property should contain the updated data */}
+        </>
       )}
       <p>{post.body}</p>
       <h4>Comments</h4>
