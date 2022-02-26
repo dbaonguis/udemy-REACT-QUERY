@@ -30,13 +30,13 @@ export function Posts() {
   }, [currentPage, queryClient]);
 
   const { isLoading, isFetching, isError, data, error,  } = useQuery(['posts', currentPage], () => fetchPosts(currentPage), {
-    staleTime: 2000, // will become STALE after 2 seconds!
+    staleTime: 10000, // will become STALE after 10 seconds!
     // keepPreviousData: true,
     cacheTime: 3000, // after 3 seconds, the cached data is gone/expired!
   });
     
   if (isLoading) return <h3>Loading...</h3>;
-  // if (isFetching) return <h3>Fetching...</h3>;
+  if (isFetching) return <h3>Fetching...</h3>;
   if (isError) return (
     <>
       <h3>oops, something went wrong!</h3>
