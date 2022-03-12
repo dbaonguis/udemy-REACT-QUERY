@@ -18,7 +18,16 @@ const InfinitePeople = () => {
   });
 
   // TODO: get data for InfiniteScroll via React Query
-  return <InfiniteScroll />;
+  return <InfiniteScroll loadMore={fetchNextPage} hasMore={hasNextPage}>
+    {
+      data?.pages?.map((pageData) => {
+        return pageData?.results?.map((person, idx) => {
+          const { name, hair_color, eye_color } = person;
+          return <Person key={idx} name={name} hairColor={hair_color} eyeColor={eye_color} />
+        });
+      })
+    }
+  </InfiniteScroll>;
 }
 
 export { InfinitePeople };
