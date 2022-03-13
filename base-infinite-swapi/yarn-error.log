@@ -1,0 +1,75 @@
+Arguments: 
+  /Users/cidbb/.nvm/versions/node/v16.13.1/bin/node /Users/cidbb/.nvm/versions/node/v16.13.1/bin/yarn install
+
+PATH: 
+  /Users/cidbb/.nvm/versions/node/v16.13.1/bin:/opt/homebrew/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/cidbb/.nvm/versions/node/v16.13.1/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/cidbb/Library/Android/sdk/emulator:/Users/cidbb/Library/Android/sdk/tools:/Users/cidbb/Library/Android/sdk/tools/bin:/Users/cidbb/Library/Android/sdk/platform-tools:/Applications/Visual Studio Code.app/Contents/Resources/app/bin:/Users/cidbb/Library/Android/sdk/emulator:/Users/cidbb/Library/Android/sdk/tools:/Users/cidbb/Library/Android/sdk/tools/bin:/Users/cidbb/Library/Android/sdk/platform-tools:/Applications/Visual Studio Code.app/Contents/Resources/app/bin
+
+Yarn version: 
+  1.22.17
+
+Node version: 
+  16.13.1
+
+Platform: 
+  darwin arm64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@types/babel__generator/-/babel__generator-7.6.4.tgz: Request failed "404 Not Found"
+      at ResponseError.ExtendableBuiltin (/Users/cidbb/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:696:66)
+      at new ResponseError (/Users/cidbb/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:802:124)
+      at Request.<anonymous> (/Users/cidbb/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:67099:16)
+      at Request.emit (node:events:390:28)
+      at Request.module.exports.Request.onRequestResponse (/Users/cidbb/.nvm/versions/node/v16.13.1/lib/node_modules/yarn/lib/cli.js:141760:10)
+      at ClientRequest.emit (node:events:390:28)
+      at HTTPParser.parserOnIncomingClient (node:_http_client:623:27)
+      at HTTPParser.parserOnHeadersComplete (node:_http_common:128:17)
+      at HTTPParser.execute (<anonymous>)
+      at TLSSocket.socketOnData (node:_http_client:487:22)
+
+npm manifest: 
+  {
+    "name": "infinite-swapi",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+      "@testing-library/jest-dom": "^5.11.10",
+      "@testing-library/react": "^11.2.6",
+      "@testing-library/user-event": "^12.8.3",
+      "react": "^17.0.2",
+      "react-dom": "^17.0.2",
+      "react-infinite-scroller": "^1.2.5",
+      "react-query": "^3.34.16",
+      "react-scripts": "4.0.3",
+      "web-vitals": "^1.1.1"
+    },
+    "scripts": {
+      "start": "react-scripts start",
+      "build": "react-scripts build",
+      "test": "react-scripts test",
+      "eject": "react-scripts eject"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
